@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <title>Dashboard</title>
+</head>
+<body>
+<div class="container">
+    <h1>Doctor's Dashboard</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Profile Picture</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Patient Record</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if user_info %}
+            <tr>
+                <td><img src="{{ user_info.profile_picture.url }}" alt="Profile Picture" style="width:100px;height:100px;"></td>
+                <td>{{ user_info.first_name }} {{ user_info.last_name }}</td>
+                <td>{{ user_info.email }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">No user information found.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

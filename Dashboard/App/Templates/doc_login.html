@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'signin.css' %}">
+    <title>Doctor Login</title>
+</head>
+<body>
+<section class="vh-100" style="background-color: #495057;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-6">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <div class="message">
+              {% for message in messages %}
+              {{ message }}
+              {% endfor %}
+            </div>
+
+            <style>
+              .message {
+                color: rgb(255, 0, 0);
+                font-family: sans-serif;
+                font-size: 25px;
+              }
+            </style>
+
+            <span class="fs-1" style="font-family: Arial, sans-serif;">&nbspDoctor Login</span>
+
+            <form action="{% url 'doclogin' %}" method="post">
+              {% csrf_token %}
+              <div class="pt-5 form-outline mb-4">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="empid" name="empid" placeholder="Employer ID" required>
+                  <label for="empid" class="labels">Employer ID</label>
+
+                </div>
+              </div>
+
+              <div class="form-outline mb-4">
+                <div class="form-floating">
+                  <input type="password" class="form-control" id="doctor_Password" name="password" placeholder="Password" required>
+                  <div class="row justify-content-end">
+                    <div class="col-4">
+                      <input class="form-check-input" type="checkbox" id="doctor_forcheckbox" onclick="doctorFunction()">
+                      <label class="labels" for="doctor_forcheckbox" style="font-size: 14px"> Show Password</label>
+                    </div>
+                  </div>
+                  <label for="doctor_Password" class="labels">Password</label>
+                  <script>
+                    function doctorFunction() {
+                      var x = document.getElementById("doctor_Password");
+                      if (x.type === "password") {
+                        x.type = "text";
+                      } else {
+                        x.type = "password";
+                      }
+                    }
+                  </script>
+                </div>
+              </div>
+
+              <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+              </div>
+            </form>
+
+            <hr class="my-4">
+            <div>
+              <p>Now Doctor Registration</p> <a href="{% url 'docregister' %}">Sign Up as Doctor</a>
+            </div>
+
+            <div>
+              <p>Are you a Patient?</p> <a href="{% url 'register' %}">Sign up as patient</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

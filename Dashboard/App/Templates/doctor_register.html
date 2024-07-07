@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'signin.css' %}">
+    <title>Register</title>
+</head>
+<body>
+<form action="{% url 'docsignrecord' %}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    {% csrf_token %}
+<section class="100" style="background-color: #495057;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+              <div class="message">
+                  {% for message in messages %}
+                  {{ message }}
+                  {% endfor %}
+              </div>
+              <style>
+                  .message{
+                  color:rgb(255,0,0);
+                  font-family: sans-serif;
+                  font-size: 25px;
+                  }
+              </style>
+            <span class="fs-2" style="font-family:Arial, sans-serif;">Doctor Registration</span>
+
+              <div class="pt-5 form-outline mb-4">
+              <div class="form-floating">
+              <input type="text" class="form-control" id="name" name="first_name" placeholder="Name" required>
+              <label for="name" class="labels">First Name</label>
+          </div>
+            </div>
+
+              <div class="form-outline mb-4">
+              <div class="form-floating">
+              <input type="text" class="form-control" id="last" name="last_name" placeholder="Last Name" required>
+              <label for="last" class="labels">Last Name</label>
+          </div>
+            </div>
+
+            <div class="form-outline mb-4">
+              <div class="form-floating">
+              <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+              <label for="email" class="labels">Email</label>
+          </div>
+            </div>
+
+              <div class="form-outline mb-4">
+              <div class="form-floating">
+              <input type="text" class="form-control" id="empid" name="empid" placeholder="Employer ID" required>
+              <label for="email" class="labels">Employer ID</label>
+          </div>
+            </div>
+
+              <div class="form-outline mb-4">
+              <div class="form-floating">
+              <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+              <label for="username" class="labels">User Name</label>
+          </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="profile_picture" class="label">Upload Your Profile Picture</label>
+                <input type="file" class="form-control" id="profile_picture" name="profile_picture" placeholder="Profile Picture">
+            </div>
+
+            <div class="form-outline mb-4">
+              <div class="form-floating">
+                  <input type="password" class="form-control" id="Password" name="password" placeholder="Password" required>
+                  <div class="row justify-content-end">
+                      <div class="col-4">
+                    <input class="form-check-input" type="checkbox" id="forcheckbox" onclick="myFunction()">
+                      <label class="labels" for="forcheckbox" style="font-size: 14px"> Show Password</label>
+                      </div>
+                      </div>
+                  <label for="Password" class="labels">Password</label>
+                  <script>
+                  function myFunction() {
+                  var x = document.getElementById("Password");
+                  if (x.type === "password") {
+                  x.type = "text";
+                  } else {
+                  x.type = "password";
+                  }
+                  }
+                  </script>
+              </div>
+            </div>
+
+              <div class="form-outline mb-4">
+              <div class="form-floating">
+                  <input type="password" class="form-control" id="rePassword" name="repassword" placeholder="Repeat Password" required>
+                  <label for="rePassword" class="labels">Repeat Your Password</label>
+                  <div class="row justify-content-end">
+                      <div class="col-4">
+                    <input class="form-check-input" type="checkbox" id="reforcheckbox" onclick="Function()">
+                      <label class="labels" for="reforcheckbox" style="font-size: 14px"> Show Password</label>
+                          </div>
+                  </div>
+
+                  <script>
+                  function Function() {
+                  var x = document.getElementById("rePassword");
+                  if (x.type === "password") {
+                  x.type = "text";
+                  } else {
+                  x.type = "password";
+                  }
+                  }
+                  </script>
+
+              </div>
+            </div>
+              <div class="form-outline mb-4">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="address1" name="address_line_1" placeholder="Address Line 1" required>
+                    <label for="address1" class="labels">Address Line 1</label>
+                </div>
+            </div>
+
+            <div class="form-outline mb-4">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
+                    <label for="city" class="labels">City</label>
+                </div>
+            </div>
+
+            <div class="form-outline mb-4">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="state" name="state" placeholder="State" required>
+                    <label for="state" class="labels">State</label>
+                </div>
+            </div>
+
+            <div class="form-outline mb-4">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Pincode" required>
+                    <label for="pincode" class="labels">Pincode</label>
+                </div>
+            </div>
+
+              <div class="d-grid gap-2 col-6 mx-auto">
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+              </div>
+
+              <hr class="my-4">
+              <div>
+                  <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="{% url 'docsignin' %}"
+                    class="fw-bold text-body"><u>Login here</u></a></p>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</form>
+
+<script>
+function validateForm() {
+    var firstName = document.getElementById("name").value;
+    var lastName = document.getElementById("last").value;
+    var email = document.getElementById("email").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("Password").value;
+    var repassword = document.getElementById("rePassword").value;
+    var empid = document.getElementById("empid").value;
+    var address1 = document.getElementById("address1").value;
+    var city = document.getElementById("city").value;
+    var state = document.getElementById("state").value;
+    var pincode = document.getElementById("pincode").value;
+
+    if (!firstName || !lastName || !email || !username || !password || !repassword || !empid || !address1 || !city || !state || !pincode) {
+        alert("All fields are required.");
+        return false;
+    }
+
+    if (password !== repassword) {
+        alert("Passwords do not match.");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+</body>
+</html>
